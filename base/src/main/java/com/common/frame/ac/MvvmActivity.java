@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.common.frame.common.MessageEvent;
 import com.common.frame.utils.StatusBarUtil;
+import com.common.frame.viewmodel.MvvmBaseViewModel;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
@@ -28,7 +29,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public abstract class MvvmActivity<V extends ViewDataBinding, VM extends ViewModel> extends AppCompatActivity {
+public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBaseViewModel> extends AppCompatActivity {
 
     protected VM viewModel;
     protected V binding;

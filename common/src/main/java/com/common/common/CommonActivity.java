@@ -13,6 +13,7 @@ import com.common.common.loadsir.LoadingCallback;
 import com.common.frame.ac.IBaseView;
 import com.common.frame.ac.MvvmActivity;
 import com.common.frame.common.MessageEvent;
+import com.common.frame.viewmodel.MvvmBaseViewModel;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
@@ -21,7 +22,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public abstract class CommonActivity<V extends ViewDataBinding, VM extends ViewModel> extends MvvmActivity<V, VM> implements IBaseView {
+public abstract class CommonActivity<V extends ViewDataBinding, VM extends MvvmBaseViewModel> extends MvvmActivity<V, VM> implements IBaseView {
 
     protected LoadService mLoadService;
 

@@ -1,12 +1,13 @@
 package com.common.framework
 
 import android.view.View
-import androidx.lifecycle.ViewModel
+import androidx.activity.viewModels
 import com.common.common.CommonActivity
-import com.common.frame.ac.MvvmActivity
 import com.common.framework.databinding.ActivityMainBinding
 
-class MainActivity : CommonActivity<ActivityMainBinding, ViewModel>() {
+class MainActivity : CommonActivity<ActivityMainBinding, MainViewModel>() {
+
+    private val vm: MainViewModel by viewModels()
 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
@@ -20,8 +21,8 @@ class MainActivity : CommonActivity<ActivityMainBinding, ViewModel>() {
 
     }
 
-    override fun getViewModel(): ViewModel? {
-        return null
+    override fun getViewModel(): MainViewModel? {
+        return vm
     }
 
     override fun onRetryBtnClick() {
