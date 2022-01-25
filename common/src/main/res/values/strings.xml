@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fine_no_data">fine, no data.</string>
+    <string name="click_me_to_retry">click me to retry!</string>
+    <string name="no_more_data">没有更多了</string>
+</resources>
