@@ -34,6 +34,7 @@ public abstract class CommonActivity<V extends ViewDataBinding, VM extends MvvmB
         updateStateBar(true);
         EventBus.getDefault().register(this);
         setLoadSir(getLoadSirView());
+        initEventAndData();
     }
 
     @Override

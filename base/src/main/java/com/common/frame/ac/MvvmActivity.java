@@ -43,7 +43,6 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBas
         viewModel = getViewModel();
         initStatusBar();
         performDataBinding();
-        initEventAndData();
     }
 
     public abstract @LayoutRes
