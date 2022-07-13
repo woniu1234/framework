@@ -4,6 +4,7 @@
     package="com.common.framework">
 
     <application
+        android:name="com.common.frame.BaseApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,9 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Main"
         tools:replace="android:allowBackup">
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".StartActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

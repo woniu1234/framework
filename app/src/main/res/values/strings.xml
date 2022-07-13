@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">framework</string>
+    <string name="privacy_guide_tips">欢迎您使用健康界APP！我们将通过《隐私政策》和《软件许可协议》
+        帮助您了解我们收集、使用、存储
+        和共享个人信息的情况，特别是我们所采集的个人信息类型与用途的对应关系。
+        此外，您还能了解到您所享有的相关权力及实现途径，
+        以及我们为保护好您的个人信息所采用的业界领先的安全技术。</string>
+    <string name="agree_guide_tips">如您同意，请点击下方确定按钮开始接受我们的服务。</string>
 </resources>

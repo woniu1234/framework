@@ -33,7 +33,6 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBas
 
     protected VM viewModel;
     protected V binding;
-    protected boolean isDark = true;
     protected Activity activity;
 
     @Override
@@ -67,7 +66,7 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBas
         //沉浸顶部状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-        updateStateBar(!isDark);
+        updateStateBar(false);
     }
 
     /**
