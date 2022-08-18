@@ -79,5 +79,5 @@ dependencies {
     //压缩图片
     api 'top.zibin:Luban:1.1.8'
     //pop
-    api 'com.github.li-xiaojun:XPopup:2.6.0'
+    api 'com.github.woniu1234:cmnpop:2.6.8'
 }
