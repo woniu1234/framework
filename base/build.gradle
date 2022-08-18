@@ -56,7 +56,7 @@ dependencies {
     //recyclerview
     api 'androidx.recyclerview:recyclerview:1.2.1'
     //recyclerview
-    api 'org.yczbj:YCRefreshViewLib:2.5.8'
+    api 'com.github.woniu1234:refresh_helper:2.0'
     //gson
     api 'com.google.code.gson:gson:2.8.7'
     //Lottie
