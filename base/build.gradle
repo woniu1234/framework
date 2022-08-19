@@ -73,4 +73,15 @@ dependencies {
     api "org.greenrobot:eventbus:3.2.0"
     //压缩图片
     api 'top.zibin:Luban:1.1.8'
+    //retrofit2
+    api('com.squareup.retrofit2:retrofit:2.9.0')
+    api('com.squareup.retrofit2:converter-gson:2.7.1')
+    api('com.squareup.retrofit2:adapter-rxjava3:2.9.0') {
+        exclude group: 'io.reactivex.rxjava2'
+    }
+    api('com.squareup.okhttp3:logging-interceptor:4.3.1')
+    //gson
+    api('com.google.code.gson:gson:2.8.7')
+    //rxAndroid
+    api 'io.reactivex.rxjava3:rxandroid:3.0.0'
 }
