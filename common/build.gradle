@@ -37,4 +37,8 @@ dependencies {
     api 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    //pop
+    api 'com.github.woniu1234:cmnpop:2.6.8'
+    //图片选择
+    api 'com.github.HuanTanSheng:EasyPhotos:3.1.3'
 }

@@ -3,10 +3,10 @@ package com.common.common.loadsir;
 import android.content.Context;
 import android.view.View;
 
+import com.common.cmnpop.XPopup;
+import com.common.cmnpop.impl.LoadingPopupView;
 import com.common.common.R;
 import com.kingja.loadsir.callback.Callback;
-import com.lxj.xpopup.XPopup;
-import com.lxj.xpopup.impl.LoadingPopupView;
 
 /**
  * @author lst
