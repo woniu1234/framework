@@ -117,7 +117,7 @@ public class FormCheck {
     }
 
 
-    private interface ETCheck {
+    public interface ETCheck {
         boolean check(EditText et);
     }
 
