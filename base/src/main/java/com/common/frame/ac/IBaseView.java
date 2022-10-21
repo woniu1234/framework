@@ -1,8 +1,6 @@
 package com.common.frame.ac;
 
 
-import com.common.frame.utils.ToastUtil;
-
 /**
  * @author lst
  * @desc desc
@@ -17,7 +15,4 @@ public interface IBaseView {
 
     void onRefreshFailure(String message);
 
-    default void onFailureToast(String message) {
-        ToastUtil.show(message);
-    }
 }
