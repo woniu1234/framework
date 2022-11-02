@@ -8,6 +8,9 @@
     <declare-styleable name="TopNavigationWidgets">
         <attr name="hide_back" format="boolean" />
         <attr name="back_drawable" format="reference" />
+        <attr name="is_show_bottom_line" format="boolean" />
+        <attr name="line_color" format="color" />
+        <attr name="line_height" format="dimension" />
         <attr name="title" />
         <attr name="title_color" />
     </declare-styleable>

@@ -17,5 +17,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.common.frame.widget.TopNavigationWidgets
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:is_show_bottom_line="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:line_color="@color/color_line"
+            app:line_height="@dimen/dp_0_5"
+            app:title="标题"
+            app:title_color="@color/colorPrimaryDark" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

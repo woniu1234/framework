@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
 import com.common.frame.R;
+import com.common.frame.utils.Utils;
 
 import java.lang.reflect.Method;
 
@@ -72,7 +74,6 @@ public class TopNavigationWidgets extends FrameLayout {
 
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.CENTER;
-        layoutParams.leftMargin = layoutParams.rightMargin = mWidth;
         addView(titleView, layoutParams);
 
 
@@ -90,8 +91,23 @@ public class TopNavigationWidgets extends FrameLayout {
             }
             titleView.setTextColor(a.getColor(R.styleable.TopNavigationWidgets_title_color, ContextCompat.getColor(context, R.color.white)));
 
+            boolean isShowLine = a.getBoolean(R.styleable.TopNavigationWidgets_is_show_bottom_line, false);
+            if (isShowLine) {
+                int lineHeight = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_line_height, Utils.dip2px(0.5f, context));
+                int lineColor = a.getColor(R.styleable.TopNavigationWidgets_line_color, ContextCompat.getColor(context, R.color.color_line));
+                addLine(lineColor, lineHeight);
+            }
+
             a.recycle();
         }
+    }
+
+    private void addLine(int lineColor, int lineHeight) {
+        View viewLine = new View(getContext());
+        viewLine.setBackgroundColor(lineColor);
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, lineHeight);
+        layoutParams.gravity = Gravity.BOTTOM;
+        addView(viewLine, layoutParams);
     }
 
     /**
