@@ -6,4 +6,6 @@
         此外，您还能了解到您所享有的相关权力及实现途径，
         以及我们为保护好您的个人信息所采用的业界领先的安全技术。</string>
     <string name="agree_guide_tips">如您同意，请点击下方确定按钮开始接受我们的服务。</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

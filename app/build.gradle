@@ -38,9 +38,14 @@ android {
         dataBinding = true
     }
 
+    viewBinding {
+        enabled true
+    }
+
 }
 
 dependencies {
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
     implementation project(":common")
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }

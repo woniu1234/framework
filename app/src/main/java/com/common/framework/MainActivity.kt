@@ -1,39 +1,34 @@
 package com.common.framework
 
+import android.view.LayoutInflater
 import android.view.View
-import androidx.activity.viewModels
-import com.common.common.CommonActivity
+import com.common.common.CommonExActivity
 import com.common.framework.databinding.ActivityMainBinding
 
-class MainActivity : CommonActivity<ActivityMainBinding, MainViewModel>() {
+class MainActivity : CommonExActivity<ActivityMainBinding, MainViewModel>() {
 
-    private val vm: MainViewModel by viewModels()
-
-    override fun getLayoutId(): Int {
-        return R.layout.activity_main
-    }
 
     override fun initEventAndData() {
-
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, BlankFragment.newInstance("", ""))
+            .commit()
     }
 
     override fun loginChanged() {
 
     }
 
-    override fun getViewModel(): MainViewModel? {
-        return vm
-    }
-
     override fun onRetryBtnClick() {
 
     }
 
-    override fun getBindingVariable(): Int {
-        return 0
+    override fun getViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(LayoutInflater.from(this))
     }
 
-    override fun getLoadSirView(): View {
-        return binding.root
+    override fun getLoadSirView(): View? {
+        return null
     }
+
+
 }
