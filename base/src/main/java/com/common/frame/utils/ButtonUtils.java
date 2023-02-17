@@ -7,7 +7,7 @@ package com.common.frame.utils;
  */
 public class ButtonUtils {
     private static long lastClickTime = 0;
-    private static final long DIFF = 1000;
+    private static final long DIFF = 500;
     private static int lastButtonId = -1;
 
     /**
@@ -32,7 +32,6 @@ public class ButtonUtils {
         long timeD = time - lastClickTime;
         if (lastButtonId == buttonId && lastClickTime > 0 && timeD < diff) {
             LogUtils.e("短时间内按钮多次触发");
-            ToastUtil.show("点击频率不要太快哦～");
             return true;
         }
         lastClickTime = time;
