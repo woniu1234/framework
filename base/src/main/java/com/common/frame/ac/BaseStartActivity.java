@@ -16,21 +16,13 @@ public abstract class BaseStartActivity extends AppCompatActivity implements Dia
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initStatusBar();
+        updateStateBar(false);
         if (SpUtil.getInstance().getBoolean("isFirstInApp", true)) {
             showPrivacyAgreement(this, this);
         } else {
             initSDK();
             enterIndex();
         }
-    }
-
-    public void initStatusBar() {
-        getWindow().addFlags(Window.FEATURE_NO_TITLE);
-        //沉浸顶部状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-        updateStateBar(false);
     }
 
     /**

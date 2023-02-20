@@ -40,7 +40,7 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBas
         super.onCreate(savedInstanceState);
         activity = this;
         viewModel = getViewModel();
-        initStatusBar();
+        updateStateBar(false);
         performDataBinding();
     }
 
@@ -59,14 +59,6 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBas
 
     protected <T extends ViewModel> T setViewModel(Class<T> tClass) {
         return new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(tClass);
-    }
-
-    public void initStatusBar() {
-        getWindow().addFlags(Window.FEATURE_NO_TITLE);
-        //沉浸顶部状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-        updateStateBar(false);
     }
 
     /**

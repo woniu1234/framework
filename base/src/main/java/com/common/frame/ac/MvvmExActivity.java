@@ -36,7 +36,7 @@ public abstract class MvvmExActivity<V extends ViewBinding, VM extends MvvmBaseV
         binding = getViewBinding();
         setContentView(binding.getRoot());
         viewModel = getViewModel();
-        initStatusBar();
+        updateStateBar(false);
     }
 
     protected V getViewBinding() {
@@ -65,14 +65,6 @@ public abstract class MvvmExActivity<V extends ViewBinding, VM extends MvvmBaseV
     }
 
     protected abstract void onRetryBtnClick();
-
-    public void initStatusBar() {
-        getWindow().addFlags(Window.FEATURE_NO_TITLE);
-        //沉浸顶部状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-        updateStateBar(false);
-    }
 
     /**
      * 修改状态颜色
