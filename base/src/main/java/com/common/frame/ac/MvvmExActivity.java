@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.viewbinding.ViewBinding;
 
 import com.common.frame.utils.StatusBarUtil;
@@ -36,7 +37,7 @@ public abstract class MvvmExActivity<V extends ViewBinding, VM extends MvvmBaseV
         binding = getViewBinding();
         setContentView(binding.getRoot());
         viewModel = getViewModel();
-        updateStateBar(false);
+        initStatusBar();
     }
 
     protected V getViewBinding() {
@@ -61,10 +62,18 @@ public abstract class MvvmExActivity<V extends ViewBinding, VM extends MvvmBaseV
     protected VM getViewModel() {
         ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
         Class<VM> actualTypeArguments = (Class<VM>) type.getActualTypeArguments()[1];
-        return new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(actualTypeArguments);
+        return new ViewModelProvider((ViewModelStoreOwner) this, (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(actualTypeArguments);
     }
 
     protected abstract void onRetryBtnClick();
+
+    public void initStatusBar() {
+        getWindow().addFlags(Window.FEATURE_NO_TITLE);
+        //沉浸顶部状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        updateStateBar(false);
+    }
 
     /**
      * 修改状态颜色

@@ -17,6 +17,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.common.frame.common.MessageEvent;
 import com.common.frame.utils.StatusBarUtil;
@@ -40,7 +41,7 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBas
         super.onCreate(savedInstanceState);
         activity = this;
         viewModel = getViewModel();
-        updateStateBar(false);
+        initStatusBar();
         performDataBinding();
     }
 
@@ -58,7 +59,15 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBas
     public abstract int getBindingVariable();
 
     protected <T extends ViewModel> T setViewModel(Class<T> tClass) {
-        return new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(tClass);
+        return new ViewModelProvider((ViewModelStoreOwner) this, (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(tClass);
+    }
+
+    public void initStatusBar() {
+        getWindow().addFlags(Window.FEATURE_NO_TITLE);
+        //沉浸顶部状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        updateStateBar(false);
     }
 
     /**
