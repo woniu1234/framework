@@ -80,7 +80,7 @@ public class ExceptionHandle {
                 ex.message = e.getMessage().split("#")[1];
             } else {
                 ex = new ResponseThrowable(e, ERROR.UNKNOWN);
-                ex.message = "未知错误";
+                ex.message = "网络连接异常，请重试";
             }
             return ex;
         }
