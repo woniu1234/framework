@@ -43,7 +43,7 @@ public class ExceptionHandle {
                 case BAD_GATEWAY:
                 case SERVICE_UNAVAILABLE:
                 default:
-                    ex.message = "网络错误";
+                    ex.message = "网络不给力，请稍后再试";
                     break;
             }
             return ex;
@@ -56,11 +56,11 @@ public class ExceptionHandle {
                 || e instanceof JSONException
                 || e instanceof ParseException) {
             ex = new ResponseThrowable(e, ERROR.PARSE_ERROR);
-            ex.message = "解析错误";
+            ex.message = "数据解析错误";
             return ex;
         } else if (e instanceof ConnectException) {
             ex = new ResponseThrowable(e, ERROR.NETWORK_ERROR);
-            ex.message = "连接失败";
+            ex.message = "当前网络不可用，请检查您的网络";
             return ex;
         } else if (e instanceof javax.net.ssl.SSLHandshakeException) {
             ex = new ResponseThrowable(e, ERROR.SSL_ERROR);
@@ -68,11 +68,11 @@ public class ExceptionHandle {
             return ex;
         } else if (e instanceof ConnectTimeoutException) {
             ex = new ResponseThrowable(e, ERROR.TIMEOUT_ERROR);
-            ex.message = "连接超时";
+            ex.message = "网络不给力，请稍后再试";
             return ex;
         } else if (e instanceof java.net.SocketTimeoutException) {
             ex = new ResponseThrowable(e, ERROR.TIMEOUT_ERROR);
-            ex.message = "连接超时";
+            ex.message = "网络不给力，请稍后再试";
             return ex;
         } else {
             if (e.getMessage() != null && e.getMessage().contains("#")) {
@@ -80,7 +80,7 @@ public class ExceptionHandle {
                 ex.message = e.getMessage().split("#")[1];
             } else {
                 ex = new ResponseThrowable(e, ERROR.UNKNOWN);
-                ex.message = "网络连接异常，请重试";
+                ex.message = "当前网络不可用，请检查您的网络";
             }
             return ex;
         }
