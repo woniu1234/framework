@@ -8,8 +8,10 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableTransformer;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+
 import com.common.net.interceptor.RequestInterceptor;
 import com.common.net.interceptor.ResponseInterceptor;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -51,11 +53,15 @@ public abstract class BaseApi {
         responseInterceptor = new ResponseInterceptor();
     }
 
+    public int getTimeOut() {
+        return 15;
+    }
+
     public OkHttpClient getOkHttpClient() {
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(15, TimeUnit.SECONDS)
-                .writeTimeout(15, TimeUnit.SECONDS);
+                .connectTimeout(getTimeOut(), TimeUnit.SECONDS)
+                .readTimeout(getTimeOut(), TimeUnit.SECONDS)
+                .writeTimeout(getTimeOut(), TimeUnit.SECONDS);
 
         /*可以统一添加网络参数到请求头*/
         okHttpClient.addInterceptor(sHttpsRequestInterceptor);
