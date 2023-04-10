@@ -6,7 +6,7 @@ package com.common.frame.preference;
  * @date 2021/6/18
  */
 public class SpUtil extends BasePreferences {
-    private static final String BASIC_DATA_PREFERENCE_FILE_NAME = "basic_data_preference";
+    private static final String BASIC_DATA_PREFERENCE_FILE_NAME = "zgjkj_sharepref";
     private static SpUtil sInstance;
 
     public static SpUtil getInstance() {
