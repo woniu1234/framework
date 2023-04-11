@@ -17,7 +17,7 @@ public abstract class BaseStartActivity extends AppCompatActivity implements Dia
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initStatusBar();
-        if (SpUtil.getInstance().getBoolean("isFirstInApp", true)) {
+        if (SpUtil.getInstance().getBoolean("PERSONALPRIVACY", true)) {
             showPrivacyAgreement(this, this);
         } else {
             initSDK();
@@ -53,7 +53,7 @@ public abstract class BaseStartActivity extends AppCompatActivity implements Dia
             onClickCancel();
             finishAffinity();
         } else if (which == 1) {//ok
-            SpUtil.getInstance().setBoolean("isFirstInApp", false);
+            SpUtil.getInstance().setBoolean("PERSONALPRIVACY", false);
             initSDK();
             enterIndex();
         }
