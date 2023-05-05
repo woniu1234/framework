@@ -80,7 +80,7 @@ public class TopNavigationWidgets extends FrameLayout {
                 setTitle(title);
             }
             titleView.setTextColor(a.getColor(R.styleable.TopNavigationWidgets_title_color, ContextCompat.getColor(context, R.color.white)));
-            float textSize = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_title_size, 18);
+            float textSize = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_title_size, Utils.dip2px(18, context));
             titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 
             int strokeWidth = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_strokeWidth, Utils.dip2px(0f, context));
