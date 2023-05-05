@@ -3,6 +3,7 @@ package com.common.frame.widget;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -30,7 +31,7 @@ public class TopNavigationWidgets extends FrameLayout {
     private static final long TIME_INTERVAL = 500L;
     private long mLastClickTime = 0;
 
-    protected TextView titleView;
+    protected MediumBoldTextView titleView;
     private ImageButton leftBtn;
     private int mWidth, mChildHeight;
 
@@ -65,31 +66,38 @@ public class TopNavigationWidgets extends FrameLayout {
         mWidth = mChildHeight = getResources().getDimensionPixelSize(R.dimen.dp_40);
 
         //标题
-        titleView = new TextView(getContext());
+        titleView = new MediumBoldTextView(getContext());
 
         titleView.setGravity(Gravity.CENTER);
-        titleView.setTextSize(18f);
         titleView.setMaxLines(1);
         titleView.setEllipsize(TextUtils.TruncateAt.END);
 
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.gravity = Gravity.CENTER;
-        addView(titleView, layoutParams);
-
-
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TopNavigationWidgets, defStyleAttr, 0);
+            String title = a.getString(R.styleable.TopNavigationWidgets_title);
+            if (title != null && title.length() > 0) {
+                setTitle(title);
+            }
+            titleView.setTextColor(a.getColor(R.styleable.TopNavigationWidgets_title_color, ContextCompat.getColor(context, R.color.white)));
+            int textSize = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_title_size, 18);
+            titleView.setTextSize(textSize);
+
+            int strokeWidth = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_strokeWidth, Utils.dip2px(0f, context));
+            titleView.setStrokeWidth(strokeWidth);
+
+            int margin = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_textMargin, Utils.dip2px(60f, context));
+
+            LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            layoutParams.gravity = Gravity.CENTER;
+            layoutParams.leftMargin = margin;
+            layoutParams.rightMargin = margin;
+            addView(titleView, layoutParams);
 
             boolean hideBack = a.getBoolean(R.styleable.TopNavigationWidgets_hide_back, false);
             int resId = a.getResourceId(R.styleable.TopNavigationWidgets_back_drawable, R.mipmap.back);
             if (!hideBack) {
                 addLeftButton(resId);
             }
-            String title = a.getString(R.styleable.TopNavigationWidgets_title);
-            if (title != null && title.length() > 0) {
-                setTitle(title);
-            }
-            titleView.setTextColor(a.getColor(R.styleable.TopNavigationWidgets_title_color, ContextCompat.getColor(context, R.color.white)));
 
             boolean isShowLine = a.getBoolean(R.styleable.TopNavigationWidgets_is_show_bottom_line, false);
             if (isShowLine) {
@@ -97,8 +105,11 @@ public class TopNavigationWidgets extends FrameLayout {
                 int lineColor = a.getColor(R.styleable.TopNavigationWidgets_line_color, ContextCompat.getColor(context, R.color.color_line));
                 addLine(lineColor, lineHeight);
             }
-
-            a.recycle();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                a.close();
+            } else {
+                a.recycle();
+            }
         }
     }
 

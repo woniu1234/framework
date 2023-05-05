@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
+        android:textColor="#f35151"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,7 +29,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:line_color="@color/color_line"
         app:line_height="@dimen/dp_0_5"
-        app:title="标题"
-        app:title_color="@color/colorPrimaryDark" />
+        app:strokeWidth="0.1dp"
+        app:title="标题标题标题标题标题标题标题标题标题"
+        app:title_color="#222222" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
