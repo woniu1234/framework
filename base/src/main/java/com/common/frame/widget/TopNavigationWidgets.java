@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,8 +80,8 @@ public class TopNavigationWidgets extends FrameLayout {
                 setTitle(title);
             }
             titleView.setTextColor(a.getColor(R.styleable.TopNavigationWidgets_title_color, ContextCompat.getColor(context, R.color.white)));
-            int textSize = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_title_size, 18);
-            titleView.setTextSize(textSize);
+            float textSize = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_title_size, 18);
+            titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 
             int strokeWidth = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_strokeWidth, Utils.dip2px(0f, context));
             titleView.setStrokeWidth(strokeWidth);
