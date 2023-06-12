@@ -29,8 +29,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:line_color="@color/color_line"
         app:line_height="@dimen/dp_0_5"
-        app:strokeWidth="0.1dp"
         app:title_size="@dimen/sp_18"
+        app:title_stroke_width="0.8"
         app:title="标题标题标题标题标题标题标题标题标题"
         app:title_color="#222222" />
 

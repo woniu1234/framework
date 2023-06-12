@@ -83,7 +83,7 @@ public class TopNavigationWidgets extends FrameLayout {
             float textSize = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_title_size, Utils.dip2px(18, context));
             titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 
-            int strokeWidth = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_strokeWidth, Utils.dip2px(0f, context));
+            float strokeWidth  = a.getFloat(R.styleable.TopNavigationWidgets_title_stroke_width, 0.8f);
             titleView.setStrokeWidth(strokeWidth);
 
             int margin = a.getDimensionPixelSize(R.styleable.TopNavigationWidgets_textMargin, Utils.dip2px(60f, context));

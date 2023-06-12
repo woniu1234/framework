@@ -1,43 +1,34 @@
-package com.common.frame.widget;
+package com.common.frame.widget
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.util.AttributeSet;
+import android.content.Context
+import android.graphics.Paint
+import android.text.TextPaint
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
+import com.common.frame.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class MediumBoldTextView @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null
+) : AppCompatTextView(context, attrs) {
+    private var mStrokeWidth = 0.8f
 
-public class MediumBoldTextView extends androidx.appcompat.widget.AppCompatTextView {
-    private float mStrokeWidth = 0f;
-    private final TextPaint textPaint;
-
-    public MediumBoldTextView(@NonNull Context context) {
-        super(context);
-        textPaint = getPaint();
+    init {
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.MediumBoldTextView)
+        //字体线条的描边粗细
+        mStrokeWidth = typedArray.getFloat(R.styleable.MediumBoldTextView_tv_stroke_width, 0.8f)
+        paint.apply {
+            // 设置画笔的描边宽度值
+            strokeWidth = mStrokeWidth
+            style = Paint.Style.FILL_AND_STROKE
+        }
+        typedArray.recycle()
     }
 
-    public MediumBoldTextView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        textPaint = getPaint();
-    }
-
-    public MediumBoldTextView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        textPaint = getPaint();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        //设置画笔的描边宽度值
-        textPaint.setStrokeWidth(mStrokeWidth);
-        textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        super.onDraw(canvas);
-    }
-
-    public void setStrokeWidth(float mStrokeWidth) {
-        this.mStrokeWidth = mStrokeWidth;
-        invalidate();
+    fun setStrokeWidth(mStrokeWidth: Float) {
+        paint.apply {
+            strokeWidth = mStrokeWidth
+            style = Paint.Style.FILL_AND_STROKE
+        }
+        invalidate()
     }
 }
