@@ -1,6 +1,8 @@
 package com.common.net;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -9,9 +11,9 @@ import io.reactivex.rxjava3.core.ObservableTransformer;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-import com.common.net.interceptor.RequestInterceptor;
 import com.common.net.interceptor.ResponseInterceptor;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -21,9 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public abstract class BaseApi {
 
     protected Retrofit retrofit;
-    protected static INetworkRequestInfo networkRequestInfo;
-    private static RequestInterceptor sHttpsRequestInterceptor;
-    private static ResponseInterceptor responseInterceptor;
 
     public abstract String getBaseUrl();
 
@@ -47,12 +46,6 @@ public abstract class BaseApi {
                 .addConverterFactory(GsonConverterFactory.create()).build();
     }
 
-    public static void setNetworkRequestInfo(INetworkRequestInfo requestInfo) {
-        networkRequestInfo = requestInfo;
-        sHttpsRequestInterceptor = new RequestInterceptor(requestInfo);
-        responseInterceptor = new ResponseInterceptor();
-    }
-
     public int getTimeOut() {
         return 15;
     }
@@ -62,21 +55,32 @@ public abstract class BaseApi {
                 .connectTimeout(getTimeOut(), TimeUnit.SECONDS)
                 .readTimeout(getTimeOut(), TimeUnit.SECONDS)
                 .writeTimeout(getTimeOut(), TimeUnit.SECONDS);
-
-        /*可以统一添加网络参数到请求头*/
-        okHttpClient.addInterceptor(sHttpsRequestInterceptor);
         //请求相应
-        okHttpClient.addInterceptor(responseInterceptor);
+        okHttpClient.addInterceptor(new ResponseInterceptor());
+        //自定义Interceptor
+        if (!getInterceptorList().isEmpty()) {
+            for (Interceptor interceptor : getInterceptorList()) {
+                okHttpClient.addInterceptor(interceptor);
+            }
+        }
         setLoggingLevel(okHttpClient);
         OkHttpClient httpClient = okHttpClient.build();
         httpClient.dispatcher().setMaxRequestsPerHost(20);
         return httpClient;
     }
 
+    public List<Interceptor> getInterceptorList() {
+        return new ArrayList<>();
+    }
+
+    public boolean isDebug() {
+        return true;
+    }
+
     private void setLoggingLevel(OkHttpClient.Builder builder) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         //BODY打印信息,NONE不打印信息
-        logging.setLevel(networkRequestInfo.isDebug() ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+        logging.setLevel(isDebug() ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         builder.addInterceptor(logging);
     }
 
